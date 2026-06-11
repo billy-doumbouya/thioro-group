@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  nom       String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model Produit {
+  id          String   @id @default(cuid())
+  nom         String
+  description String
+  categorie   String
+  sousCategorie String?
+  images      String[]
+  pdfUrl      String?
+  marque      String?
+  origine     String?
+  actif       Boolean  @default(true)
+  ordre       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Actualite {
+  id        String   @id @default(cuid())
+  titre     String
+  contenu   String
+  extrait   String?
+  image     String?
+  publie    Boolean  @default(false)
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Devis {
+  id        String   @id @default(cuid())
+  nom       String
+  prenom    String
+  societe   String?
+  telephone String
+  email     String
+  activite  String
+  message   String
+  statut    String   @default("nouveau")
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  nom       String
+  email     String
+  telephone String?
+  sujet     String?
+  message   String
+  lu        Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model GalerieImage {
+  id          String   @id @default(cuid())
+  url         String
+  publicId    String
+  titre       String?
+  categorie   String?
+  ordre       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Parametre {
+  id        String   @id @default(cuid())
+  cle       String   @unique
+  valeur    String
+  updatedAt DateTime @updatedAt
+}
