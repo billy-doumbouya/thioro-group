@@ -40,10 +40,15 @@ export default function Navbar() {
     <>
       {/* Barre supérieure */}
       <div className="bg-bleu-electrique text-white py-1.5 px-4 text-sm hidden md:flex justify-between items-center">
-        <span className="font-opensans">Hamdallaye, Immeuble Ecobank, Conakry — Guinée</span>
-        <a href="tel:+224000000000" className="flex items-center gap-1.5 hover:text-bleu-eau transition-colors">
+        <span className="font-opensans">
+          Hamdallaye, Immeuble Ecobank, Conakry — Guinée
+        </span>
+        <a
+          href="tel:+224000000000"
+          className="flex items-center gap-1.5 hover:text-bleu-eau transition-colors"
+        >
           <Phone size={13} />
-          +224 000 000 000
+          +224 623952011
         </a>
       </div>
 
@@ -53,7 +58,10 @@ export default function Navbar() {
         animate={scrolled ? "scrolled" : "top"}
         variants={{
           top: { backgroundColor: "rgba(255,255,255,0.95)", boxShadow: "none" },
-          scrolled: { backgroundColor: "rgba(255,255,255,0.98)", boxShadow: "0 2px 20px rgba(0,0,0,0.1)" },
+          scrolled: {
+            backgroundColor: "rgba(255,255,255,0.98)",
+            boxShadow: "0 2px 20px rgba(0,0,0,0.1)",
+          },
         }}
         transition={{ duration: 0.3 }}
         className="sticky top-0 z-50 border-b border-gray-100"
@@ -74,7 +82,13 @@ export default function Navbar() {
                   >
                     <button className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-gris-anthracite hover:text-bleu-electrique hover:bg-bleu-clair transition-all font-opensans">
                       {link.label}
-                      <ChevronDown size={14} className={cn("transition-transform", dropdownOpen && "rotate-180")} />
+                      <ChevronDown
+                        size={14}
+                        className={cn(
+                          "transition-transform",
+                          dropdownOpen && "rotate-180",
+                        )}
+                      />
                     </button>
                     <AnimatePresence>
                       {dropdownOpen && (
@@ -106,12 +120,12 @@ export default function Navbar() {
                       "px-4 py-2 rounded-lg text-sm font-medium transition-all font-opensans",
                       pathname === link.href
                         ? "text-bleu-electrique bg-bleu-clair font-semibold"
-                        : "text-gris-anthracite hover:text-bleu-electrique hover:bg-bleu-clair"
+                        : "text-gris-anthracite hover:text-bleu-electrique hover:bg-bleu-clair",
                     )}
                   >
                     {link.label}
                   </Link>
-                )
+                ),
               )}
             </div>
 
@@ -172,12 +186,12 @@ export default function Navbar() {
                         "px-3 py-2.5 rounded-lg text-sm font-medium font-opensans",
                         pathname === link.href
                           ? "bg-bleu-clair text-bleu-electrique font-semibold"
-                          : "text-gris-anthracite"
+                          : "text-gris-anthracite",
                       )}
                     >
                       {link.label}
                     </Link>
-                  )
+                  ),
                 )}
                 <Link
                   href="/contact"

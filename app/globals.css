@@ -1,10 +1,11 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
-@theme {
+:root {
   --font-montserrat: "Montserrat", sans-serif;
   --font-opensans: "Open Sans", sans-serif;
-  --color-bleu-electrique: #0054A6;
-  --color-bleu-eau: #00AEEF;
+  --color-bleu-electrique: #0054a6;
+  --color-bleu-eau: #00aeef;
   --color-bleu-fonce: #003d7a;
   --color-bleu-clair: #e6f4fd;
   --color-gris-anthracite: #555555;
@@ -23,7 +24,11 @@ body {
   font-family: var(--font-opensans);
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: var(--font-montserrat);
 }
 
@@ -35,6 +40,396 @@ h1, h2, h3, h4, h5 {
   background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0054A6;
+  background: #0054a6;
   border-radius: 3px;
 }
+
+/* --- Landing page styles (converted from provided template) --- */
+/* Basic reset for landing */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #1a1a1a;
+  background: #fff;
+  overflow-x: hidden;
+}
+.mont {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 56px;
+  height: 64px;
+  border-bottom: 1px solid #e8f0fb;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  color: #0054a6;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo-icon {
+  width: 34px;
+  height: 34px;
+  background: #0054a6;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+.nav-link {
+  padding: 7px 15px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #555;
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.nav-link:hover {
+  background: #e6f4fd;
+  color: #0054a6;
+}
+.nav-cta {
+  background: #0054a6;
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.nav-cta:hover {
+  background: #003d7a;
+}
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 540px;
+}
+.hero-left {
+  background: #fff;
+  padding: 70px 52px 70px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-right {
+  background: #0054a6;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(7% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.hero-right-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: radial-gradient(circle, #ffffff 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e6f4fd;
+  color: #0054a6;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 22px;
+  width: fit-content;
+  font-family: "Open Sans", sans-serif;
+}
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background: #00aeef;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.5);
+  }
+}
+.hero-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.15;
+  color: #0a0a0a;
+  margin-bottom: 18px;
+}
+.hero-title .c-blue {
+  color: #0054a6;
+}
+.hero-title .c-eau {
+  color: #00aeef;
+}
+.hero-sub {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #666;
+  max-width: 380px;
+  margin-bottom: 34px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: #0054a6;
+  color: #fff;
+  border: none;
+  padding: 13px 26px;
+  border-radius: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    background 0.2s,
+    transform 0.15s;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: #003d7a;
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background: transparent;
+  color: #0054a6;
+  border: 1.5px solid #0054a6;
+  padding: 12px 26px;
+  border-radius: 12px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.btn-secondary:hover {
+  background: #e6f4fd;
+}
+.hero-visual {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 50px;
+}
+.hero-icon-wrap {
+  position: relative;
+  width: 190px;
+  height: 190px;
+}
+.hero-circle {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  animation: spin 22s linear infinite;
+}
+.hero-circle-2 {
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  animation: spin 15s linear infinite reverse;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.hero-center-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+}
+.hero-zap {
+  color: #fff;
+  animation: float 3s ease-in-out infinite;
+}
+.hero-drop {
+  color: #00aeef;
+  animation: float 3s ease-in-out infinite 1.5s;
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+.hero-label {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 11px;
+  padding: 10px 15px;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+.hero-label strong {
+  display: block;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+.hero-label span {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* STATS */
+.stats-bar {
+  background: #0054a6;
+  padding: 22px 60px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stat-item {
+  text-align: center;
+  color: #fff;
+}
+.stat-number {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.stat-accent {
+  color: #00aeef;
+}
+.stat-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+/* Animations and utility */
+.fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer tweaks */
+.footer {
+  background: #0f1929;
+  padding: 48px 60px 28px;
+}
+.footer-logo {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+.footer-socials {
+  display: flex;
+  gap: 8px;
+}
+.footer-social {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.footer-social:hover {
+  background: #0054a6;
+  color: #fff;
+}
+
+/* Responsive small tweaks */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .nav {
+    padding: 0 20px;
+  }
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- End landing styles --- */

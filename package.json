@@ -4,16 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": " prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
+    "postinstall": "prisma generate",
     "db:seed": "node prisma/seed.js",
     "db:push": "prisma db push",
     "db:studio": "prisma studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
-    "@prisma/client": "^7.8.0",
     "@radix-ui/react-avatar": "^1.1.12",
     "@radix-ui/react-dialog": "^1.1.16",
     "@radix-ui/react-dropdown-menu": "^2.1.17",
@@ -29,12 +29,12 @@
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.17.0",
     "next": "16.2.9",
     "next-auth": "^4.24.14",
     "nextjs-toploader": "^3.9.17",
-    "prisma": "^7.8.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.78.0",
@@ -44,9 +44,12 @@
     "yup": "^1.7.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
+    "@prisma/client": "^6.19.3",
+    "@tailwindcss/postcss": "^4.3.0",
+    "autoprefixer": "^10.4.14",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "prisma": "^6.19.3",
     "tailwindcss": "^4"
   }
 }

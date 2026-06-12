@@ -8,7 +8,12 @@ import { uploadToCloudinary } from "@/lib/cloudinary";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-export default function ImageUploader({ value = [], onChange, multiple = false, maxFiles = 5 }) {
+export default function ImageUploader({
+  value = [],
+  onChange,
+  multiple = false,
+  maxFiles = 5,
+}) {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [previews, setPreviews] = useState(value);
@@ -31,8 +36,12 @@ export default function ImageUploader({ value = [], onChange, multiple = false, 
           // Prévisualisation locale immédiate
           const localUrl = URL.createObjectURL(file);
           const result = await uploadToCloudinary(file);
-          return { url: result.secure_url, publicId: result.public_id, localUrl };
-        })
+          return {
+            url: result.secure_url,
+            publicId: result.public_id,
+            localUrl,
+          };
+        }),
       );
 
       const newPreviews = [...previews, ...uploaded.map((u) => u.url)];
@@ -52,17 +61,23 @@ export default function ImageUploader({ value = [], onChange, multiple = false, 
     onChange?.(newPreviews);
   };
 
-  const onDrop = useCallback((e) => {
-    e.preventDefault();
-    setDragging(false);
-    handleUpload(e.dataTransfer.files);
-  }, [previews]);
+  const onDrop = useCallback(
+    (e) => {
+      e.preventDefault();
+      setDragging(false);
+      handleUpload(e.dataTransfer.files);
+    },
+    [previews],
+  );
 
   return (
     <div className="space-y-3">
       {/* Zone de drop */}
       <div
-        onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragging(true);
+        }}
         onDragLeave={() => setDragging(false)}
         onDrop={onDrop}
         onClick={() => document.getElementById("file-input").click()}
@@ -70,7 +85,7 @@ export default function ImageUploader({ value = [], onChange, multiple = false, 
           "border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all",
           dragging
             ? "border-bleu-electrique bg-bleu-clair scale-[1.02]"
-            : "border-gray-200 hover:border-bleu-electrique hover:bg-bleu-clair/50"
+            : "border-gray-200 hover:border-bleu-electrique hover:bg-bleu-clair/50",
         )}
       >
         <input
@@ -84,7 +99,9 @@ export default function ImageUploader({ value = [], onChange, multiple = false, 
         {uploading ? (
           <div className="flex flex-col items-center gap-2">
             <Loader2 size={28} className="text-bleu-electrique animate-spin" />
-            <p className="text-sm font-opensans text-bleu-electrique font-medium">Upload en cours...</p>
+            <p className="text-sm font-opensans text-bleu-electrique font-medium">
+              Upload en cours...
+            </p>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-2">
@@ -119,11 +136,19 @@ export default function ImageUploader({ value = [], onChange, multiple = false, 
                 transition={{ duration: 0.2 }}
                 className="relative group aspect-square rounded-xl overflow-hidden bg-gray-100"
               >
-                <Image src={url} alt={`Image ${index + 1}`} fill className="object-cover" />
+                <Image
+                  src={url}
+                  alt={`Image ${index + 1}`}
+                  fill
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <button
                     type="button"
-                    onClick={(e) => { e.stopPropagation(); removeImage(index); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeImage(index);
+                    }}
                     className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors"
                   >
                     <X size={14} />
