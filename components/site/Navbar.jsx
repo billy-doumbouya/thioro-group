@@ -5,8 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import Logo from "@/components/shared/Logo";
-import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -24,6 +22,69 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+/* ── Logo SVG inline (remplace @/components/shared/Logo) ── */
+function Logo({ size = "md" }) {
+  const sizes = {
+    sm: { w: 130, h: 44 },
+    md: { w: 160, h: 52 },
+    lg: { w: 200, h: 65 },
+  };
+  const { w, h } = sizes[size] || sizes.md;
+  return (
+    <Link href="/" className="inline-flex items-center">
+      <svg
+        width={w}
+        height={h}
+        viewBox="0 0 200 65"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="30" cy="32" r="28" fill="#0054A6" opacity="0.08" />
+        <path d="M34 8 L22 32 L30 32 L26 56 L42 28 L34 28 Z" fill="#0054A6" />
+        <path
+          d="M14 36 C14 29 20 22 20 22 C20 22 26 29 26 36 C26 39.3 23.3 42 20 42 C16.7 42 14 39.3 14 36 Z"
+          fill="#00AEEF"
+          opacity="0.85"
+        />
+        <text
+          x="68"
+          y="28"
+          fontFamily="Montserrat, sans-serif"
+          fontWeight="800"
+          fontSize="18"
+          fill="#0054A6"
+          letterSpacing="2"
+        >
+          THIORO
+        </text>
+        <text
+          x="69"
+          y="45"
+          fontFamily="Open Sans, sans-serif"
+          fontWeight="400"
+          fontSize="10"
+          fill="#555555"
+          letterSpacing="3"
+        >
+          GROUP SARLU
+        </text>
+        <line
+          x1="68"
+          y1="33"
+          x2="155"
+          y2="33"
+          stroke="#00AEEF"
+          strokeWidth="1.5"
+        />
+      </svg>
+    </Link>
+  );
+}
+
+function cn(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -38,21 +99,21 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Barre supérieure */}
-      <div className="bg-bleu-electrique text-white py-1.5 px-4 text-sm hidden md:flex justify-between items-center">
-        <span className="font-opensans">
+      {/* ── Barre supérieure ── */}
+      <div className="bg-[#0054A6] text-white py-1.5 px-4 text-sm hidden md:flex justify-between items-center">
+        <span className="font-[Open_Sans]">
           Hamdallaye, Immeuble Ecobank, Conakry — Guinée
         </span>
         <a
-          href="tel:+224000000000"
-          className="flex items-center gap-1.5 hover:text-bleu-eau transition-colors"
+          href="tel:+224623952011"
+          className="flex items-center gap-1.5 hover:text-[#00AEEF] transition-colors font-[Open_Sans]"
         >
           <Phone size={13} />
-          +224 623952011
+          +224 623 952 011
         </a>
       </div>
 
-      {/* Navbar principale */}
+      {/* ── Navbar principale ── */}
       <motion.nav
         initial={false}
         animate={scrolled ? "scrolled" : "top"}
@@ -70,7 +131,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             <Logo size="sm" />
 
-            {/* Desktop nav */}
+            {/* ── Desktop nav ── */}
             <div className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) =>
                 link.children ? (
@@ -80,16 +141,17 @@ export default function Navbar() {
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
                   >
-                    <button className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-gris-anthracite hover:text-bleu-electrique hover:bg-bleu-clair transition-all font-opensans">
+                    <button className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-[#555555] hover:text-[#0054A6] hover:bg-[#e6f4fd] transition-all font-[Open_Sans]">
                       {link.label}
                       <ChevronDown
                         size={14}
                         className={cn(
-                          "transition-transform",
+                          "transition-transform duration-200",
                           dropdownOpen && "rotate-180",
                         )}
                       />
                     </button>
+
                     <AnimatePresence>
                       {dropdownOpen && (
                         <motion.div
@@ -103,7 +165,7 @@ export default function Navbar() {
                             <Link
                               key={child.href}
                               href={child.href}
-                              className="block px-4 py-3 text-sm text-gris-anthracite hover:bg-bleu-clair hover:text-bleu-electrique transition-colors font-opensans"
+                              className="block px-4 py-3 text-sm text-[#555555] hover:bg-[#e6f4fd] hover:text-[#0054A6] transition-colors font-[Open_Sans]"
                             >
                               {child.label}
                             </Link>
@@ -117,10 +179,10 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "px-4 py-2 rounded-lg text-sm font-medium transition-all font-opensans",
+                      "px-4 py-2 rounded-lg text-sm font-medium transition-all font-[Open_Sans]",
                       pathname === link.href
-                        ? "text-bleu-electrique bg-bleu-clair font-semibold"
-                        : "text-gris-anthracite hover:text-bleu-electrique hover:bg-bleu-clair",
+                        ? "text-[#0054A6] bg-[#e6f4fd] font-semibold"
+                        : "text-[#555555] hover:text-[#0054A6] hover:bg-[#e6f4fd]",
                     )}
                   >
                     {link.label}
@@ -129,27 +191,28 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* CTA */}
+            {/* ── CTA Desktop ── */}
             <div className="hidden lg:block">
               <Link
                 href="/contact"
-                className="bg-bleu-electrique text-white px-5 py-2.5 rounded-xl text-sm font-semibold font-montserrat hover:bg-bleu-fonce transition-all shadow-md hover:shadow-lg"
+                className="bg-[#0054A6] text-white px-5 py-2.5 rounded-xl text-sm font-semibold font-[Montserrat] hover:bg-[#003d7a] transition-all shadow-md hover:shadow-lg"
               >
                 Demander un devis
               </Link>
             </div>
 
-            {/* Burger mobile */}
+            {/* ── Burger mobile ── */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg text-gris-anthracite hover:bg-gray-100"
+              className="lg:hidden p-2 rounded-lg text-[#555555] hover:bg-gray-100 transition-colors"
+              aria-label="Menu"
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
-        {/* Menu mobile */}
+        {/* ── Menu mobile ── */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -163,7 +226,7 @@ export default function Navbar() {
                 {navLinks.map((link) =>
                   link.children ? (
                     <div key={link.label}>
-                      <p className="px-3 py-2 text-xs font-bold text-gris-moyen uppercase tracking-widest font-montserrat">
+                      <p className="px-3 py-2 text-xs font-bold text-[#888888] uppercase tracking-widest font-[Montserrat]">
                         {link.label}
                       </p>
                       {link.children.map((child) => (
@@ -171,7 +234,7 @@ export default function Navbar() {
                           key={child.href}
                           href={child.href}
                           onClick={() => setMobileOpen(false)}
-                          className="block px-6 py-2.5 text-sm text-gris-anthracite hover:text-bleu-electrique font-opensans"
+                          className="block px-6 py-2.5 text-sm text-[#555555] hover:text-[#0054A6] font-[Open_Sans] transition-colors"
                         >
                           {child.label}
                         </Link>
@@ -183,20 +246,21 @@ export default function Navbar() {
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
-                        "px-3 py-2.5 rounded-lg text-sm font-medium font-opensans",
+                        "px-3 py-2.5 rounded-lg text-sm font-medium font-[Open_Sans] transition-colors",
                         pathname === link.href
-                          ? "bg-bleu-clair text-bleu-electrique font-semibold"
-                          : "text-gris-anthracite",
+                          ? "bg-[#e6f4fd] text-[#0054A6] font-semibold"
+                          : "text-[#555555] hover:bg-gray-50",
                       )}
                     >
                       {link.label}
                     </Link>
                   ),
                 )}
+
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 bg-bleu-electrique text-white px-4 py-3 rounded-xl text-sm font-semibold text-center font-montserrat"
+                  className="mt-3 bg-[#0054A6] text-white px-4 py-3 rounded-xl text-sm font-semibold text-center font-[Montserrat] hover:bg-[#003d7a] transition-colors"
                 >
                   Demander un devis
                 </Link>
