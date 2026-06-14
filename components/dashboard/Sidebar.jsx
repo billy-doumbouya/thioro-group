@@ -5,12 +5,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  LayoutDashboard, Package, Newspaper, FileText,
-  MessageSquare, Image, Settings, LogOut, ChevronLeft, ChevronRight, Droplets, Zap,
+  LayoutDashboard,
+  Package,
+  Newspaper,
+  FileText,
+  MessageSquare,
+  Image,
+  Settings,
+  LogOut,
+  ChevronLeft,
+  ChevronRight,
+  Droplets,
+  Zap,
 } from "lucide-react";
 import Logo from "@/components/shared/Logo";
 import { cn } from "@/lib/utils";
 import { signOut } from "next-auth/react";
+import { useConfirmModal } from "@/hooks/useConfirmModal";
+import ConfirmModal from "@/app/(dashboard)/dashboard/ConfirmModal";
 
 const navItems = [
   { href: "/dashboard", label: "Tableau de bord", icon: LayoutDashboard },
@@ -25,6 +37,20 @@ const navItems = [
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
+  const confirmModal = useConfirmModal();
+
+  const handleLogoutClick = () => {
+    confirmModal.open({
+      title: "Se déconnecter ?",
+      description:
+        "Vous devrez vous reconnecter pour accéder au tableau de bord.",
+      variant: "warning",
+      confirmLabel: "Déconnexion",
+      onConfirm: async () => {
+        await signOut({ callbackUrl: "/admin/login" });
+      },
+    });
+  };
 
   return (
     <motion.aside
@@ -57,17 +83,19 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
-          const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href));
+          const isActive =
+            pathname === item.href ||
+            (item.href !== "/dashboard" && pathname.startsWith(item.href));
           return (
             <Link key={item.href} href={item.href}>
               <motion.div
                 whileHover={{ x: 3 }}
                 transition={{ duration: 0.15 }}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-opensans transition-colors cursor-pointer",
+                  "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-[Open_Sans] transition-colors cursor-pointer",
                   isActive
-                    ? "bg-bleu-electrique text-white font-semibold"
-                    : "text-gray-400 hover:bg-white/10 hover:text-white"
+                    ? "bg-[#0054A6] text-white font-semibold"
+                    : "text-gray-400 hover:bg-white/10 hover:text-white",
                 )}
               >
                 <item.icon size={18} className="shrink-0" />
@@ -93,8 +121,8 @@ export default function Sidebar() {
       {/* Déconnexion */}
       <div className="px-3 py-4 border-t border-white/10">
         <button
-          onClick={() => signOut({ callbackUrl: "/admin/login" })}
-          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-400 hover:bg-red-500/20 hover:text-red-400 transition-colors w-full font-opensans"
+          onClick={handleLogoutClick}
+          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-400 hover:bg-red-500/20 hover:text-red-400 transition-colors w-full font-[Open_Sans]"
         >
           <LogOut size={18} className="shrink-0" />
           <AnimatePresence>
@@ -111,6 +139,8 @@ export default function Sidebar() {
           </AnimatePresence>
         </button>
       </div>
+
+      <ConfirmModal {...confirmModal.props} />
     </motion.aside>
   );
 }
