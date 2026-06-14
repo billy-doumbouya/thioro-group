@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { sendEmail } from "@/lib/resend";
-
+import { sendEmail } from "@/lib/nodemailer";
 export async function GET() {
   try {
-    const devis = await prisma.devis.findMany({ orderBy: { createdAt: "desc" } });
+    const devis = await prisma.devis.findMany({
+      orderBy: { createdAt: "desc" },
+    });
     return NextResponse.json(devis);
   } catch {
     return NextResponse.json({ error: "Erreur" }, { status: 500 });
@@ -17,7 +18,7 @@ export async function POST(req) {
     const devis = await prisma.devis.create({ data: body });
 
     await sendEmail({
-      to: process.env.RESEND_FROM_EMAIL,
+      to: process.env.SMTP_FROM,
       subject: `Nouvelle demande de devis — ${body.prenom} ${body.nom}`,
       html: `
         <h2>Nouvelle demande de devis</h2>
