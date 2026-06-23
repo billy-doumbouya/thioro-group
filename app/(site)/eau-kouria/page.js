@@ -2,47 +2,45 @@
 
 import { motion } from "framer-motion";
 import {
-  HardHat,
-  Building2,
-  ShieldCheck,
-  Clock,
+  Droplets,
+  MapPin,
+  Shield,
+  Leaf,
   Store,
+  ChevronRight,
 } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import ProductCard from "@/components/site/ProductCard";
 import ContactForm from "@/components/site/ContactForm";
+import { produitsEau } from "@/data/produits";
 
-// TODO : remplacer par le vrai catalogue BTP une fois saisi côté dashboard admin
-// (categorie === "btp" dans la base de données via l'API /api/produits)
-const produitsBTP = [];
-
-export default function BTPPage() {
+export default function EauKouriaPage() {
   const atouts = [
     {
-      icon: Building2,
-      titre: "Multi-projets",
-      desc: "Bâtiment, voirie et travaux publics en Guinée",
+      icon: MapPin,
+      titre: "Source naturelle",
+      desc: "Captée à Kouriah, Coyah — eau pure à la source",
       couleur: "#00aeef",
       bg: "rgba(0,174,239,0.08)",
     },
     {
-      icon: ShieldCheck,
-      titre: "Conformité chantier",
-      desc: "Respect des normes et exigences de sécurité",
+      icon: Shield,
+      titre: "Certifiée",
+      desc: "Contrôlée par l'autorité sanitaire guinéenne",
       couleur: "#10b981",
       bg: "rgba(16,185,129,0.08)",
     },
     {
-      icon: Clock,
-      titre: "Respect des délais",
-      desc: "Suivi rigoureux de l'exécution des travaux",
+      icon: Leaf,
+      titre: "Locale & Responsable",
+      desc: "Produit guinéen, emploi local, chaîne courte",
       couleur: "#84cc16",
       bg: "rgba(132,204,22,0.08)",
     },
     {
-      icon: HardHat,
-      titre: "Savoir-faire local",
-      desc: "Équipes et partenaires ancrés en Guinée",
+      icon: Droplets,
+      titre: "Minéraux essentiels",
+      desc: "Riche en oligo-éléments bénéfiques au corps",
       couleur: "#2563eb",
       bg: "rgba(37,99,235,0.08)",
     },
@@ -50,12 +48,12 @@ export default function BTPPage() {
 
   return (
     <>
-      {/* ─── HERO ─── */}
+      {/* ─── HERO LIQUIDE ET GÉOMÉTRIQUE ─── */}
       <section
         className="relative overflow-hidden bg-[#001c38] py-28 px-4 sm:px-6 lg:px-8 text-white"
         style={{ clipPath: "polygon(0 0, 100% 0, 100% 90%, 0 100%)" }}
       >
-        {/* Halos */}
+        {/* Halos hydro-lumineux */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <motion.div
             animate={{ scale: [1, 1.15, 1], x: [0, -20, 0], y: [0, 30, 0] }}
@@ -76,9 +74,11 @@ export default function BTPPage() {
             }}
             className="absolute -left-24 bottom-0 w-[550px] h-[550px] rounded-full bg-[#00aeef] opacity-20 blur-[130px]"
           />
+          {/* Trame technique signature */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:44px_44px]" />
         </div>
 
+        {/* Accents vectoriels */}
         <svg
           className="absolute top-12 left-12 opacity-[0.05] pointer-events-none hidden sm:block"
           width="100"
@@ -97,6 +97,7 @@ export default function BTPPage() {
         </svg>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
+          {/* Conteneur d'icône cristalline */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -115,9 +116,9 @@ export default function BTPPage() {
                   "radial-gradient(circle at 30% 30%, rgba(0,174,239,0.2), transparent 70%)",
               }}
             />
-            <HardHat
+            <Droplets
               size={32}
-              className="text-[#00aeef] relative z-10"
+              className="text-[#00aeef] relative z-10 animate-pulse"
               strokeWidth={1.8}
             />
           </motion.div>
@@ -129,7 +130,7 @@ export default function BTPPage() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold font-montserrat uppercase tracking-widest bg-[#00aeef]/10 text-[#00aeef] border border-[#00aeef]/20 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00aeef] animate-pulse" />
-              Pôle Bâtiment &amp; Travaux Publics
+              Pôle Agro-Industriel
             </span>
           </motion.div>
 
@@ -143,9 +144,9 @@ export default function BTPPage() {
             }}
             className="font-montserrat font-black text-4xl sm:text-5xl lg:text-[3.4rem] tracking-tight leading-[1.1] mb-6"
           >
-            BTP{" "}
+            Eau Minérale{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0054a6] to-[#00aeef]">
-              Thioro Group
+              Kouria
             </span>
           </motion.h1>
 
@@ -159,14 +160,41 @@ export default function BTPPage() {
             }}
             className="text-white/60 font-sans font-light text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
           >
-            Thioro Group accompagne les projets de bâtiment et de travaux
-            publics en Guinée, avec une exigence constante de qualité, de
-            conformité et de respect des délais.
+            L&apos;eau naturelle issue des nappes préservées de Kouriah (Coyah).
+            Filtrée et conditionnée selon les standards technologiques les plus
+            stricts pour vous offrir une pureté intacte.
           </motion.p>
+
+          {/* Analyse rapide / Spécifications de la source */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.35,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="inline-flex items-center gap-6 sm:gap-10 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md"
+          >
+            {[
+              { val: "pH 7.2", label: "Équilibre parfait" },
+              { val: "0% OGM", label: "Traitement Naturel" },
+              { val: "Kouriah", label: "Source unique" },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="font-montserrat font-black text-sm sm:text-base text-[#00aeef]">
+                  {s.val}
+                </div>
+                <div className="font-sans text-[10px] text-white/40 uppercase tracking-widest mt-0.5">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* ─── ATOUTS & CATALOGUE ─── */}
+      {/* ─── ATOUTS & CATALOGUE DES FORMATS ─── */}
       <section
         className="relative bg-[#f4f8fd] dark:bg-zinc-950 py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
         style={{ marginTop: "-2px" }}
@@ -174,7 +202,7 @@ export default function BTPPage() {
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0054a6] to-transparent pointer-events-none" />
 
         <div className="max-w-7xl mx-auto">
-          {/* Grille des Atouts */}
+          {/* Grille des Atouts Hydro-Certifiés */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
             {atouts.map((atout, i) => {
               const Icon = atout.icon;
@@ -208,19 +236,19 @@ export default function BTPPage() {
             })}
           </div>
 
-          {/* Section Catalogue */}
+          {/* Section Formats */}
           <div className="text-center mb-12">
             <h2 className="font-montserrat font-black text-3xl text-zinc-900 dark:text-white tracking-tight mb-3">
-              Équipements &amp; matériaux disponibles
+              Gamme & Formats disponibles
             </h2>
             <p className="text-zinc-500 dark:text-zinc-400 font-sans font-light max-w-lg mx-auto text-sm sm:text-base">
-              Une sélection d&apos;équipements importés, adaptés aux besoins de
-              vos chantiers et projets BTP.
+              Des contenants ergonomiques et adaptés à toutes les situations du
+              quotidien (particuliers, bureaux, CHR).
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {produitsBTP.map((p, i) => (
+            {produitsEau.map((p, i) => (
               <motion.div
                 key={p.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -235,7 +263,7 @@ export default function BTPPage() {
         </div>
       </section>
 
-      {/* ─── CTA PARTENARIAT / SOUS-TRAITANCE ─── */}
+      {/* ─── CTA DISTRIBUTION - EFFET GLASSMORPHISM ─── */}
       <section
         className="relative bg-[#001c38] py-28 px-4 sm:px-6 lg:px-8 overflow-hidden"
         style={{ clipPath: "polygon(0 8%, 100% 0, 100% 100%, 0 100%)" }}
@@ -259,18 +287,19 @@ export default function BTPPage() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold font-montserrat uppercase tracking-widest bg-[#00aeef]/10 text-[#00aeef] border border-[#00aeef]/20 mb-5">
               <Store size={12} className="animate-pulse" />
-              Partenariat &amp; sous-traitance
+              Réseau de distribution
             </span>
             <h2 className="font-montserrat font-black text-3xl sm:text-4xl text-white tracking-tight mb-4">
-              Devenir partenaire ou sous-traitant
+              Devenir point de vente ou distributeur
             </h2>
             <p className="text-white/50 font-sans font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Vous êtes entreprise de construction, fournisseur de matériaux,
-              ou intervenant spécialisé ? Rejoignez le réseau de partenaires
-              BTP de Thioro Group.
+              Vous êtes gérant de supermarché, grossiste, ou responsable dans
+              l&apos;hôtellerie-restauration ? Intégrez l&apos;Eau Minérale
+              Kouria à votre catalogue d&apos;offres.
             </p>
           </motion.div>
 
+          {/* Formulaire Vitré Pro */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}

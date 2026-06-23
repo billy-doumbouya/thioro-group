@@ -13,8 +13,11 @@ const navLinks = [
     label: "Produits",
     children: [
       { href: "/electricite", label: "Équipements électriques" },
-      { href: "/eau-kouria", label: "Eau Minérale Kouria" },
-      { href: "/autres-activites", label: "Autres activités" },
+      { href: "/BTB", label: "BTP & Bâtiment" },
+      { href: "/peche", label: "Pêche & Halieutique" },
+      { href: "/agriculture", label: "Agriculture" },
+      { href: "/industrie", label: "Industrie" },
+      { href: "/eau-kouria", label: "Eau Minérale" },
     ],
   },
   { href: "/a-propos", label: "À propos" },
