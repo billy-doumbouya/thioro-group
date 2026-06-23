@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast } from "sonner";
 import { Loader2, Eye, EyeOff, ArrowRight, ShieldCheck } from "lucide-react";
-import Logo from "@/components/shared/Logo";
+import Image from "next/image";
 
 const schema = yup.object({
   email: yup.string().email("Email invalide").required("Email requis"),
@@ -179,7 +179,7 @@ export default function LoginPage() {
           <div className="flex items-center justify-center gap-3 mb-8">
             <div className="relative w-13 h-13 rounded-2xl bg-gradient-to-br from-[#003d7a] to-[#0054a6] flex items-center justify-center overflow-hidden shrink-0">
               <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#00aeef]/30" />
-              <Logo size="sm" className="relative z-10" />
+              <Image src="/logo.jpg" alt="Logo Thioro Group" width={40} height={40} />
             </div>
             <div>
               <p className="font-montserrat text-[17px] font-extrabold text-[#003d7a] leading-none tracking-tight">

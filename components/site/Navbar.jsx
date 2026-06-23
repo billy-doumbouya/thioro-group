@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -23,63 +24,7 @@ const navLinks = [
 ];
 
 /* ── Logo SVG inline (remplace @/components/shared/Logo) ── */
-function Logo({ size = "md" }) {
-  const sizes = {
-    sm: { w: 130, h: 44 },
-    md: { w: 160, h: 52 },
-    lg: { w: 200, h: 65 },
-  };
-  const { w, h } = sizes[size] || sizes.md;
-  return (
-    <Link href="/" className="inline-flex items-center">
-      <svg
-        width={w}
-        height={h}
-        viewBox="0 0 200 65"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="30" cy="32" r="28" fill="#0054A6" opacity="0.08" />
-        <path d="M34 8 L22 32 L30 32 L26 56 L42 28 L34 28 Z" fill="#0054A6" />
-        <path
-          d="M14 36 C14 29 20 22 20 22 C20 22 26 29 26 36 C26 39.3 23.3 42 20 42 C16.7 42 14 39.3 14 36 Z"
-          fill="#00AEEF"
-          opacity="0.85"
-        />
-        <text
-          x="68"
-          y="28"
-          fontFamily="Montserrat, sans-serif"
-          fontWeight="800"
-          fontSize="18"
-          fill="#0054A6"
-          letterSpacing="2"
-        >
-          THIORO
-        </text>
-        <text
-          x="69"
-          y="45"
-          fontFamily="Open Sans, sans-serif"
-          fontWeight="400"
-          fontSize="10"
-          fill="#555555"
-          letterSpacing="3"
-        >
-          GROUP SARLU
-        </text>
-        <line
-          x1="68"
-          y1="33"
-          x2="155"
-          y2="33"
-          stroke="#00AEEF"
-          strokeWidth="1.5"
-        />
-      </svg>
-    </Link>
-  );
-}
+
 
 function cn(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -105,11 +50,11 @@ export default function Navbar() {
           Hamdallaye, Immeuble Ecobank, Conakry — Guinée
         </span>
         <a
-          href="tel:+224623952011"
+          href="tel:+224 621 12 12 83"
           className="flex items-center gap-1.5 hover:text-[#00AEEF] transition-colors font-[Open_Sans]"
         >
           <Phone size={13} />
-          +224 623 952 011
+          +224 621 12 12 83
         </a>
       </div>
 
@@ -129,7 +74,12 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Logo size="sm" />
+            <Image
+              src="/logo.jpg"
+              alt="Logo Thioro Group"
+              width={40}
+              height={40}
+            />
 
             {/* ── Desktop nav ── */}
             <div className="hidden lg:flex items-center gap-1">

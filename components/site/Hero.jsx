@@ -4,10 +4,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
-  Zap,
-  Droplets,
-  ShieldCheck,
-  Activity,
+  Store,
+  HardHat,
+  Wheat,
+  Fish,
+  Factory,
   ArrowUpRight,
 } from "lucide-react";
 
@@ -18,12 +19,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#001226]/90 pt-28 pb-20 px-4 sm:px-6 lg:px-8"
     >
       {/* ─── ARRIÈRE-PLAN ─── */}
-      {/*
-        FIX 1 : position relative (obligatoire pour next/image fill)
-        FIX 2 : z-index explicites — image z-0, overlays z-[1] et z-[2]
-      */}
       <div className="absolute inset-0 z-0 pointer-events-none ">
-        {/* L'image elle-même — z-0 */}
         <Image
           src="/bg.png"
           alt="Thioro Group Infrastructure"
@@ -33,12 +29,11 @@ export default function Hero() {
           priority
         />
 
-        {/* FIX 3 : overlays APRÈS l'image, avec z supérieur */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#001226]/85 via-[#001c38]/65 to-[#001226]" />
         <div className="absolute inset-0 z-[1] bg-[#001226]/40" />
       </div>
 
-      {/* ─── HALOS — z-[2] pour passer au-dessus des overlays mais sous le contenu ─── */}
+      {/* ─── HALOS ─── */}
       <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">
         <motion.div
           animate={{ scale: [1, 1.2, 0.9, 1], x: [-30, 20, 0], y: [0, -40, 0] }}
@@ -59,34 +54,38 @@ export default function Hero() {
           }}
           className="absolute -right-40 top-1/4 w-[700px] h-[700px] rounded-full bg-[#0054a6] opacity-25 blur-[150px]"
         />
-        {/* Grille technique */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:50px_50px]" />
       </div>
 
-      {/* ─── CONTENU — z-10 au-dessus de tout ─── */}
+      {/* ─── CONTENU ─── */}
       <div className="relative z-10 max-w-7xl w-full mx-auto flex flex-col justify-between h-full space-y-16">
-        {/* TOP ROW : Mini-Badges */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+        {/* TOP ROW : 5 domaines d'activité */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 w-full">
           {[
             {
-              icon: Zap,
-              label: "Énergie & Distribution",
-              desc: "Réseaux électriques",
+              icon: Store,
+              label: "Commerce Général",
+              desc: "Import & Distribution",
             },
             {
-              icon: Activity,
-              label: "Haute Performance",
-              desc: "Normes IEC internationales",
+              icon: HardHat,
+              label: "BTP",
+              desc: "Bâtiment & Travaux Publics",
             },
             {
-              icon: Droplets,
-              label: "Production d'Eau",
-              desc: "Source Naturelle Kouria",
+              icon: Wheat,
+              label: "Agriculture",
+              desc: "Production & Filières",
             },
             {
-              icon: ShieldCheck,
-              label: "Fiabilité Garantie",
-              desc: "Partenaire de confiance",
+              icon: Fish,
+              label: "Pêche",
+              desc: "Ressources Halieutiques",
+            },
+            {
+              icon: Factory,
+              label: "Industrie",
+              desc: "Transformation & Production",
             },
           ].map((item, i) => (
             <motion.div
@@ -96,7 +95,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="border border-white/5 bg-white/[0.02] backdrop-blur-md p-4 rounded-xl flex items-center gap-3 group hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300"
             >
-              <div className="p-2 rounded-lg bg-[#00aeef]/10 text-[#00aeef] group-hover:scale-110 transition-transform">
+              <div className="p-2 rounded-lg bg-[#00aeef]/10 text-[#00aeef] group-hover:scale-110 transition-transform shrink-0">
                 <item.icon size={18} />
               </div>
               <div>
@@ -122,7 +121,7 @@ export default function Hero() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#00aeef]/30 bg-[#00aeef]/5 backdrop-blur-sm text-[#00aeef] text-xs tracking-wider uppercase font-semibold w-max">
               <span className="w-1.5 h-1.5 rounded-full bg-[#00aeef] animate-pulse" />
-              Secteurs Stratégiques · Guinée
+              Groupe Multisectoriel · Guinée
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-black text-white font-[Montserrat] leading-[1.1] tracking-tight">
@@ -140,9 +139,10 @@ export default function Hero() {
             </h1>
 
             <p className="text-white/60 font-light text-base sm:text-lg max-w-xl leading-relaxed">
-              Infrastructures énergétiques d&apos;envergure et mise en bouteille
-              de l&apos;Eau Minérale Kouria. Nous propulsons l&apos;économie
-              guinéenne avec rigueur et innovation.
+              Du commerce général au BTP, en passant par l&apos;agriculture, la
+              pêche et l&apos;industrie : Thioro Group Sarlu accompagne le
+              développement économique guinéen sur cinq secteurs stratégiques,
+              avec la même exigence de rigueur et de fiabilité.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
@@ -203,23 +203,23 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* BOTTOM ROW : Métriques */}
+        {/* BOTTOM ROW : Secteurs (sans métriques inventées) */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full pt-4">
           {[
             {
-              metric: "150+",
-              sub: "Infrastructures Électrifiées",
-              desc: "Équipements industriels et tertiaires déployés.",
+              label: "Commerce & Import",
+              sub: "Distribution d'équipements",
+              desc: "Câbles électriques, régulateurs de tension et équipements techniques importés.",
             },
             {
-              metric: "Coyah",
-              sub: "Source d'Eau Minérale",
-              desc: "Unité de captage et embouteillage éco-responsable.",
+              label: "BTP & Construction",
+              sub: "Travaux & infrastructures",
+              desc: "Accompagnement de projets de bâtiment et travaux publics en Guinée.",
             },
             {
-              metric: "100%",
-              sub: "Conformité & Qualité",
-              desc: "Matériaux certifiés Nexans, Schneider & Hager.",
+              label: "Filières Productives",
+              sub: "Agriculture · Pêche · Industrie",
+              desc: "Développement de filières locales au service de l'économie guinéenne.",
             },
           ].map((bento, idx) => (
             <motion.div
@@ -230,8 +230,8 @@ export default function Hero() {
               className="p-5 rounded-2xl border border-white/5 bg-gradient-to-b from-white/[0.04] to-transparent backdrop-blur-md hover:border-white/10 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
-                <span className="block text-2xl font-black font-[Montserrat] text-white group-hover:text-[#00aeef] transition-colors">
-                  {bento.metric}
+                <span className="block text-lg font-black font-[Montserrat] text-white group-hover:text-[#00aeef] transition-colors">
+                  {bento.label}
                 </span>
                 <span className="block text-white/80 font-semibold text-xs mt-1 tracking-wide uppercase">
                   {bento.sub}

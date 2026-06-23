@@ -4,8 +4,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Layers,
+  Wheat,
   Fish,
-  Truck,
+  Factory,
   CheckCircle2,
   SlidersHorizontal,
   X,
@@ -15,6 +16,19 @@ import ContactForm from "@/components/site/ContactForm";
 
 // Données locales typées et structurées selon votre charte
 const secteursActivite = [
+  {
+    id: "agriculture",
+    label: "Agriculture",
+    icon: Wheat,
+    couleurAccent: "#84cc16", // Lime
+    bgAccent: "rgba(132,204,22,0.1)",
+    desc: "Thioro Group accompagne le développement de filières agricoles guinéennes, de la production à la mise en marché. Notre ambition est de contribuer à une agriculture plus structurée, plus rentable et mieux connectée aux besoins du marché local.",
+    points: [
+      "Soutien aux filières de production locales",
+      "Mise en relation entre producteurs et marchés",
+      "Approche orientée qualité et régularité de l'offre",
+    ],
+  },
   {
     id: "peche",
     label: "Pêche & Halieutique",
@@ -29,16 +43,16 @@ const secteursActivite = [
     ],
   },
   {
-    id: "logistique",
-    label: "Services & Logistique",
-    icon: Truck,
+    id: "industrie",
+    label: "Industrie",
+    icon: Factory,
     couleurAccent: "#f97316", // Orange
     bgAccent: "rgba(249,115,22,0.1)",
-    desc: "Notre division services accompagne quotidiennement les entreprises, partenaires industriels et institutions privées dans la résolution de leurs défis logistiques complexes, de gestion de flux et d'approvisionnement stratégique en Guinée.",
+    desc: "Notre division industrielle accompagne les entreprises et institutions guinéennes dans leurs projets de production et de transformation, avec une approche pragmatique adaptée aux réalités du terrain local.",
     points: [
-      "Flotte de transport dédiée et livraison sécurisée",
-      "Conseil opérationnel en chaîne d'approvisionnement",
-      "Solutions sur mesure adaptées aux exigences B2B",
+      "Accompagnement de projets industriels et de production",
+      "Conseil opérationnel adapté au contexte guinéen",
+      "Solutions sur mesure pour partenaires B2B",
     ],
   },
 ];
@@ -178,10 +192,9 @@ export default function AutresActivitesPage() {
             }}
             className="text-white/60 font-sans font-light text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
           >
-            Au-delà de l&apos;électricité et de l&apos;accès à l&apos;eau
-            potable, Thioro Group met son agilité opérationnelle au service du
-            développement guinéen via ses divisions Pêche et Solutions
-            Logistiques.
+            Au-delà du commerce général et du BTP, Thioro Group met son
+            agilité opérationnelle au service du développement guinéen via
+            ses divisions Agriculture, Pêche et Industrie.
           </motion.p>
 
           {/* Tableaux de bord vitrés - Statistiques d'activités */}
@@ -196,7 +209,7 @@ export default function AutresActivitesPage() {
             className="inline-flex items-center gap-6 sm:gap-10 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md"
           >
             {[
-              { val: "02", label: "Pôles d'excellence" },
+              { val: "03", label: "Pôles d'excellence" },
               { val: "100%", label: "Ancrage National" },
               { val: "B2B / B2C", label: "Secteurs d'impact" },
             ].map((s, i) => (
@@ -285,7 +298,7 @@ export default function AutresActivitesPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"
             >
               {filteredSecteurs.map((secteur, idx) => {
                 const Icon = secteur.icon;

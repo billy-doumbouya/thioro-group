@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 
 export default function Footer() {
@@ -37,21 +38,7 @@ export default function Footer() {
             >
               {/* Icône SVG d'origine sublimée */}
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 shadow-inner backdrop-blur-md">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="drop-shadow-[0_0_4px_rgba(0,174,239,0.5)]"
-                >
-                  <path d="M11 2L6 10H10L8 16L14 7H10L11 2Z" fill="#fff" />
-                  <path
-                    d="M3 11C3 8.5 5 6.5 5 6.5C5 6.5 7 8.5 7 11C7 12.1 6.1 13 5 13C3.9 13 3 12.1 3 11Z"
-                    fill="var(--color-bleu-eau)"
-                    opacity="0.85"
-                  />
-                </svg>
+              <Image src="/logo.jpg" alt="Logo Thioro Group" width={40} height={40} />
               </div>
               THIORO GROUP SARLU
             </div>
@@ -60,16 +47,17 @@ export default function Footer() {
               className="text-sm leading-relaxed text-zinc-300 font-light"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Votre partenaire de confiance pour les équipements électriques et
-              l'eau minérale naturelle en Guinée depuis 2015.
+              Groupe multisectoriel guinéen actif dans le commerce général, le
+              BTP, l&apos;agriculture, la pêche et l&apos;industrie.
             </p>
 
-            {/* Réseaux Sociaux Premium */}
+            {/* Réseaux Sociaux — décoratifs, sans lien actif pour le moment */}
             <div className="flex gap-3 mt-2">
               {["📘", "📸", "🎵", "▶️", "💬"].map((emoji, index) => (
                 <div
                   key={index}
-                  className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-xl bg-white/5 border border-white/10 text-base transition-all duration-300 hover:-translate-y-1 hover:bg-white/15 hover:border-white/30"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-base opacity-60"
+                  aria-hidden="true"
                 >
                   {emoji}
                 </div>
@@ -90,39 +78,40 @@ export default function Footer() {
               style={{ fontFamily: "var(--font-opensans)" }}
             >
               {[
-                "Notre histoire",
-                "Qualité & Conformité",
-                "Actualités",
-                "Mentions légales",
-              ].map((text, i) => (
+                { label: "Notre histoire", href: "/a-propos" },
+                { label: "Qualité & Conformité", href: "/qualite" },
+                { label: "Actualités", href: "/actualites" },
+                { label: "Mentions légales", href: "#" },
+              ].map((item, i) => (
                 <a
                   key={i}
-                  href={text === "Actualités" ? "#actualites" : "#"}
-                  className="text-zinc-300 transition-colors duration-200 hover:text-[var(--color-color-bleu-eau)] hover:translate-x-1 inline-block transform"
+                  href={item.href}
+                  className="text-zinc-300 transition-colors duration-200 hover:text-[var(--color-bleu-eau)] hover:translate-x-1 inline-block transform"
                 >
-                  {text}
+                  {item.label}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Colonne Produits */}
+          {/* Colonne Nos Activités */}
           <div>
             <h3
               className="mb-5 text-sm font-bold uppercase tracking-widest text-white/60"
               style={{ fontFamily: "var(--font-montserrat)" }}
             >
-              Produits
+              Nos Activités
             </h3>
             <div
               className="flex flex-col gap-3 text-sm"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
               {[
-                { label: "Équipements électriques", href: "#produits" },
-                { label: "Eau Minérale Kouria", href: "#eau" },
-                { label: "Pêche & Services", href: "#" },
-                { label: "Demander un devis", href: "#contact" },
+                { label: "Commerce Général", href: "/electricite" },
+                { label: "BTP", href: "/eau-kouria" },
+                { label: "Agriculture", href: "/agriculture" },
+                { label: "Pêche", href: "/peche" },
+                { label: "Industrie", href: "/industrie" },
               ].map((link, i) => (
                 <a
                   key={i}
@@ -151,10 +140,16 @@ export default function Footer() {
                 <span className="opacity-80">📍</span> Hamdallaye, Conakry
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="opacity-80">📞</span> +224 000 000 000
+                <span className="opacity-80">📞</span>
+                <a href="tel:+224621121283" className="hover:text-white transition-colors">
+                  +224 621 12 12 83
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="opacity-80">✉️</span> contact@thiorogroup.com
+                <span className="opacity-80">✉️</span>
+                <a href="mailto:contact@thiorogroup.com" className="hover:text-white transition-colors">
+                  contact@thiorogroup.com
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <span className="opacity-80">🕒</span> Lun–Ven : 8h–18h
@@ -176,18 +171,14 @@ export default function Footer() {
             . Tous droits réservés.
           </div>
 
-          <div className="flex gap-6">
-            {["Mentions légales", "Confidentialité", "RCCM Guinée"].map(
-              (text, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="transition-colors duration-200 hover:text-white"
-                >
-                  {text}
-                </a>
-              ),
-            )}
+          <div className="flex flex-col items-center gap-1 text-center sm:flex-row sm:gap-6">
+            <span>RCCM GN.KAL.2018.B.082817</span>
+            <a href="#" className="transition-colors duration-200 hover:text-white">
+              Mentions légales
+            </a>
+            <a href="#" className="transition-colors duration-200 hover:text-white">
+              Confidentialité
+            </a>
           </div>
         </div>
       </div>

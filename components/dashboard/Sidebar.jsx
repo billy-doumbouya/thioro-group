@@ -68,7 +68,12 @@ export default function Sidebar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <Logo variant="white" size="sm" />
+              <Image
+                src="/logo.jpg"
+                alt="Logo Thioro Group"
+                width={40}
+                height={40}
+              />
             </motion.div>
           )}
         </AnimatePresence>
