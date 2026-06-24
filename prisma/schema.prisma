@@ -4,8 +4,8 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")          
-  directUrl = env("DATABASE_URL_UNPOOLED") 
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 model User {
@@ -18,19 +18,19 @@ model User {
 }
 
 model Produit {
-  id          String   @id @default(cuid())
-  nom         String
-  description String
-  categorie   String
+  id            String   @id @default(cuid())
+  nom           String
+  description   String
+  categorie     String
   sousCategorie String?
-  images      String[]
-  pdfUrl      String?
-  marque      String?
-  origine     String?
-  actif       Boolean  @default(true)
-  ordre       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  images        String[]
+  pdfUrl        String?
+  marque        String?
+  origine       String?
+  actif         Boolean  @default(true)
+  ordre         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Actualite {
@@ -70,13 +70,13 @@ model Message {
 }
 
 model GalerieImage {
-  id          String   @id @default(cuid())
-  url         String
-  publicId    String
-  titre       String?
-  categorie   String?
-  ordre       Int      @default(0)
-  createdAt   DateTime @default(now())
+  id        String   @id @default(cuid())
+  url       String
+  publicId  String
+  titre     String?
+  categorie String?
+  ordre     Int      @default(0)
+  createdAt DateTime @default(now())
 }
 
 model Parametre {
@@ -84,4 +84,10 @@ model Parametre {
   cle       String   @unique
   valeur    String
   updatedAt DateTime @updatedAt
+}
+
+model playing_with_neon {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value Float? @db.Real
 }

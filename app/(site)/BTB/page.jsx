@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  HardHat,
-  Building2,
-  ShieldCheck,
-  Clock,
-  Store,
-} from "lucide-react";
+import { HardHat, Building2, ShieldCheck, Clock, Store } from "lucide-react";
 import SectionWrapper from "@/components/shared/SectionWrapper";
 import ProductCard from "@/components/site/ProductCard";
 import ContactForm from "@/components/site/ContactForm";
@@ -265,9 +259,9 @@ export default function BTPPage() {
               Devenir partenaire ou sous-traitant
             </h2>
             <p className="text-white/50 font-sans font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Vous êtes entreprise de construction, fournisseur de matériaux,
-              ou intervenant spécialisé ? Rejoignez le réseau de partenaires
-              BTP de Thioro Group.
+              Vous êtes entreprise de construction, fournisseur de matériaux, ou
+              intervenant spécialisé ? Rejoignez le réseau de partenaires BTP de
+              Thioro Group.
             </p>
           </motion.div>
 

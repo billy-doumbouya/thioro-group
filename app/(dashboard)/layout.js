@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getSession } from "@/lib/auth";
+import { getSession } from "@/lib/getSession";
 import Sidebar from "@/components/dashboard/Sidebar";
 
 export default async function DashboardLayout({ children }) {

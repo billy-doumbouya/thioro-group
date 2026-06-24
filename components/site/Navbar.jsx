@@ -28,7 +28,6 @@ const navLinks = [
 
 /* ── Logo SVG inline (remplace @/components/shared/Logo) ── */
 
-
 function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
