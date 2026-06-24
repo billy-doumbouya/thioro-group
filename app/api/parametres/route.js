@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { requireAuth } from "@/lib/auth";
+import { requireAuth } from "@/lib/getSession";
 
 export async function GET() {
   try {
@@ -20,7 +20,7 @@ export async function PUT(req) {
         where: { cle },
         update: { valeur: String(valeur || "") },
         create: { cle, valeur: String(valeur || "") },
-      })
+      }),
     );
     await Promise.all(ops);
     return NextResponse.json({ success: true });

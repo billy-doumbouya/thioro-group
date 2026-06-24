@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { requireAuth } from "@/lib/auth";
-
+import { requireAuth } from "@/lib/getSession";
 export async function GET() {
   try {
     const images = await prisma.galerieImage.findMany({ orderBy: { ordre: "asc" } });
